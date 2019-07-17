@@ -1,0 +1,29 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "Amazon like storefront using MySQL",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kayleighs/bamazon.git"
+  },
+  "keywords": [
+    "My",
+    "SQL",
+    "amazon"
+  ],
+  "author": "Kayleigh Starr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kayleighs/bamazon/issues"
+  },
+  "homepage": "https://github.com/kayleighs/bamazon#readme",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "inquirer": "^6.5.0",
+    "mysql": "^2.17.1"
+  }
+}
