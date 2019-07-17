@@ -15,7 +15,7 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId)
-    allProducts();
+    run();
 });
 
 function run() {
@@ -25,6 +25,7 @@ function run() {
         message: "What would you like to do?",
         choices: [
             "Buy products",
+            "List products",
             "Exit"
         ]
     }).then(function(answer) {
@@ -33,7 +34,10 @@ function run() {
             case "Buy products":
                 buyProducts();
                 break;
-            case "exit":
+            case "List products":
+                allProducts();
+                break;
+            case "Exit":
                 connection.end();
                 break;
         }
@@ -45,13 +49,14 @@ function allProducts() {
     connection.query("SELECT * FROM products", function(err,res) {
         if (err) throw err;
         for (var i = 0; i<res.length; i ++){
-            console.log("ID: " + res[i].item_id + "\nProduct Name" + res[i].product_name + "\nDepartment Name: " + res[i].department_name + "\nPrice: " + res[i].price + "\nStock Quantity: " + res[i].stock_quantity + "\n--------")
+        console.log("ID: " + res[i].item_id + "\nProduct Name" + res[i].product_name + "\nDepartment Name: " + res[i].department_name + "\nPrice: " + res[i].price.toFixed(2) + "\nStock Quantity: " + res[i].stock_quantity + "\n--------")
         }
     });
+    connection.end();
 };
 
 function buyProducts() {
-
+ //   allProducts();
     inquirer.prompt([
         {
         name: "item_ID",
@@ -76,7 +81,48 @@ function buyProducts() {
             }
         }
     ]).then (function(res) {
-        console.log(res.item_ID, res.amount)
+    //    console.log(res.item_ID, res.amount)
+        checkStore(res.item_ID, res.amount)
 
     })
 };
+
+function checkStore(id, quantity) {
+    connection.query("SELECT *  FROM products WHERE ?", 
+    {item_id: id},
+        function(err,res){
+        if (err) throw err; 
+            console.log(quantity)
+            console.log(res[0].stock_quantity)
+        res.forEach(element =>{
+            if (quantity <= element.stock_quantity) {
+                console.log("There are enough " + element.product_name + " to purchase in stock")
+                updateStore(quantity, id, element.stock_quantity, element.price.toFixed(2))
+
+            }
+            else {
+                console.log("Sorry! We don't have enough stock of that item!")
+                run()
+            }
+
+        })
+
+    });
+};
+
+function updateStore(quantity, id, store_quantity, price) {
+connection.query("UPDATE products SET ? WHERE ?",
+    [{
+        stock_quantity: store_quantity - quantity
+    },
+    {
+        item_id:id
+    },
+    ],)
+    var total= price *quantity
+    console.log("Thank You for your order! Your total is $" + total.toFixed(2))
+
+}
+
+
+
