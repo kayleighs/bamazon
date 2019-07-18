@@ -3,7 +3,6 @@ require("dotenv").config();
 var inquirer = require('inquirer');
 var mysql = require('mysql')
 
-
 var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
@@ -29,7 +28,6 @@ function run() {
             "Exit"
         ]
     }).then(function(answer) {
-
         switch(answer.action){
             case "Buy products":
                 buyProducts();
@@ -41,7 +39,6 @@ function run() {
                 connection.end();
                 break;
         }
-        
     });
 };
 
@@ -83,7 +80,6 @@ function buyProducts() {
     ]).then (function(res) {
     //    console.log(res.item_ID, res.amount)
         checkStore(res.item_ID, res.amount)
-
     })
 };
 
@@ -98,15 +94,12 @@ function checkStore(id, quantity) {
             if (quantity <= element.stock_quantity) {
                 console.log("There are enough " + element.product_name + " to purchase in stock")
                 updateStore(quantity, id, element.stock_quantity, element.price.toFixed(2))
-
             }
             else {
                 console.log("Sorry! We don't have enough stock of that item!")
                 run()
             }
-
         })
-
     });
 };
 
@@ -121,8 +114,31 @@ connection.query("UPDATE products SET ? WHERE ?",
     ],)
     var total= price *quantity
     console.log("Thank You for your order! Your total is $" + total.toFixed(2))
-
+    buyAgain();
 }
 
-
+function buyAgain() {
+    inquirer.prompt({
+        name: "action",
+        type: "list",
+        message: "Whould you like to buy again?",
+        choices: [
+            "Yes",
+            "No",
+            "Main Menu",
+        ]
+    }).then(function (answer) {
+        switch (answer.action) {
+            case "Yes":
+                buyProducts();
+                break;
+            case "No":
+                connection.end();
+                break;
+            case "Main Menu":
+                run();
+                break;
+        }
+    });
+}
 
