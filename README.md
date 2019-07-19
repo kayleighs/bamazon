@@ -25,14 +25,16 @@ Select your desired command in the console.
     * Shows all products.
     * Allows user to purchase product. Checks quantity of item and tells user whether it is in stock. Gives price at end of order.
 
-### Viewing Inventory
-<img src="./assets/bamazonManager.gif" width="800">
-  
+### Manager
   * Does the following.
     * Shows all products.
+    <img src="./assets/bamazonCustomerview.gif" width="800">
     * Allows user to view low inventory items.
+    <img src="./assets/bamazonCustomerviewLow.gif" width="800">
     * Allows user to add inventory.
+    <img src="./assets/bamazonCustomeraddIn.gif" width="800">
     * Allows user to add a new product.
+    <img src="./assets/bamazonCustomeraddPr.gif" width="800">
 
 ## Built With
 * node.js
