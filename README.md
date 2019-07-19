@@ -13,20 +13,20 @@ Install the required packages.
 <br>
 An env is required to store the password to MySQL.
 ### To Use
-Type in node bamazonCustomer.js or bamazonManager in your terminal (make sure the current directory is the bamazon-app folder)
+Type in node bamazonCustomer.js or bamazonManager.js in your terminal (make sure the current directory is the bamazon-app folder)
 <br>
 Select your desired command in the console.
 ## Demonstration
 
 ### Customer
-<img src="./assets/bamazonCustomer.gif" width="600">
+<img src="./assets/bamazonCustomer.gif" width="800">
  
   * Does the following.
     * Shows all products.
     * Allows user to purchase product. Checks quantity of item and tells user whether it is in stock. Gives price at end of order.
 
 ### Viewing Inventory
-<img src="./assets/bamazonManager.gif" width="600">
+<img src="./assets/bamazonManager.gif" width="800">
   
   * Does the following.
     * Shows all products.
