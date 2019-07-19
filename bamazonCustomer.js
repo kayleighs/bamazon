@@ -88,8 +88,8 @@ function checkStore(id, quantity) {
     {item_id: id},
         function(err,res){
         if (err) throw err; 
-            console.log(quantity)
-            console.log(res[0].stock_quantity)
+    //        console.log(quantity)
+    //        console.log(res[0].stock_quantity)
         res.forEach(element =>{
             if (quantity <= element.stock_quantity) {
                 console.log("There are enough " + element.product_name + " to purchase in stock")

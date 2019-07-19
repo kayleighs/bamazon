@@ -33,6 +33,7 @@ function run() {
         switch (answer.action) {
             case "List products for sale":
                 allProducts();
+                run()
                 break;
             case "View low inventory":
                 lowInventory();
@@ -57,7 +58,7 @@ function allProducts() {
             console.log("ID: " + res[i].item_id + "\nProduct Name: " + res[i].product_name + "\nDepartment Name: " + res[i].department_name + "\nPrice: " + res[i].price.toFixed(2) + "\nStock Quantity: " + res[i].stock_quantity + "\n--------")
         }
     });
-    run()
+
 };
 function lowInventory() {
     connection.query("SELECT * FROM products WHERE stock_quantity <5", function (err, res){
