@@ -28,13 +28,13 @@ Select your desired command in the console.
 ### Manager
   * Does the following.
 ####  Shows all products.
-    <img src="./assets/bamazonCustomerview.gif" width="800">
+<img src="./assets/bamazonCustomerview.gif" width="800">
 #### Allows user to view low inventory items.
-    <img src="./assets/bamazonCustomerviewLow.gif" width="800">
+<img src="./assets/bamazonCustomerviewLow.gif" width="800">
 #### Allows user to add inventory.
-    <img src="./assets/bamazonCustomeraddIn.gif" width="800">
+<img src="./assets/bamazonCustomeraddIn.gif" width="800">
 #### Allows user to add a new product.
-    <img src="./assets/bamazonCustomeraddPr.gif" width="800">
+<img src="./assets/bamazonCustomeraddPr.gif" width="800">
 
 ## Built With
 * node.js
